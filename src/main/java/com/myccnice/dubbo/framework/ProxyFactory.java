@@ -4,7 +4,8 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 
-import com.myccnice.dubbo.protocol.http.HttpClient;
+import com.myccnice.dubbo.protocol.Protocol;
+import com.myccnice.dubbo.protocol.ProtocolFactory;
 import com.myccnice.dubbo.register.RegisterCenter;
 
 public class ProxyFactory {
@@ -16,7 +17,8 @@ public class ProxyFactory {
             public String invoke(Object proxy, Method method, Object[] args) throws Throwable {
                 Invocation invocation = new Invocation(clazz.getName(), method.getName(), args, method.getParameterTypes());
                 Url url = RegisterCenter.random(clazz.getName());
-                return HttpClient.post(url.getHost(), url.getPort(), invocation );
+                Protocol protocol = ProtocolFactory.get();
+                return protocol.send(url, invocation );
             }
         });
     }
