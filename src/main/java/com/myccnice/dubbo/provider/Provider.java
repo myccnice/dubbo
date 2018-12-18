@@ -10,11 +10,13 @@ import com.myccnice.dubbo.register.RegisterCenter;
 public class Provider {
 
     public static void main(String[] args) {
-        HelloService service = new HelloServiceImpl();
         // 服务注册
-        RegisterCenter.register(service.getClass());
-        // 服务暴露
         Url url = new Url("localhost", 8080);
+        RegisterCenter.register(
+                HelloService.class.getName(),
+                url,
+                HelloServiceImpl.class);
+        // 服务暴露
         Protocol protocol = ProtocolFactory.get();
         protocol.start(url);
     }

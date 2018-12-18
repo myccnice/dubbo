@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.io.IOUtils;
 
 import com.myccnice.dubbo.framework.Invocation;
+import com.myccnice.dubbo.framework.Url;
 import com.myccnice.dubbo.register.RegisterCenter;
 
-public class ServletHandler {
+public class HttpServerHandler {
 
     public void handle(HttpServletRequest req, HttpServletResponse resp) {
         try {
@@ -21,7 +22,7 @@ public class ServletHandler {
             ObjectInputStream ois = new ObjectInputStream(in);
             Invocation invocation = (Invocation)ois.readObject();
 
-            Class<?> clazz = RegisterCenter.get(invocation.getInterfaceName());
+            Class<?> clazz = RegisterCenter.get(invocation.getInterfaceName(), Url.getLocal());
             Method method = clazz.getMethod(invocation.getMethodName(), invocation.getParamTypes());
             String invoke = (String)method.invoke(clazz.newInstance(), invocation.getParams());
 

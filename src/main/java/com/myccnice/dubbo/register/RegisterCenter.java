@@ -7,22 +7,20 @@ import com.myccnice.dubbo.framework.Url;
 
 public class RegisterCenter {
 
-    // 服务名称
+    // {服务名:{URL:实现类}}
     private static Map<String, Map<Url, Class<?>>> REGISTER = new HashMap<>();
 
-    public static void register(Class<?> clazz) {
+    public static void register(String intefaceName, Url url, Class<?> impl) {
         Map<Url, Class<?>> service = new HashMap<>();
-        Url url = new Url("localhost", 8080);
-        service.put(url, clazz);
-        REGISTER.put(clazz.getName(), service);
+        service.put(url, impl);
+        REGISTER.put(intefaceName, service);
     }
 
     public static Url random(String interfaceName) {
         return REGISTER.get(interfaceName).keySet().iterator().next();
     }
 
-    public static Class<?> get(String interfaceName) {
-        Url url = new Url("localhost", 8080);
+    public static Class<?> get(String interfaceName, Url url) {
         return REGISTER.get(interfaceName).get(url);
     }
 }

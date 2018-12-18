@@ -7,12 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class ServletDispatcher extends HttpServlet {
+public class DispatcherServlet extends HttpServlet {
 
     private static final long serialVersionUID = 5692744506520980532L;
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        new ServletHandler().handle(req, resp);
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        new HttpServerHandler().handle(req, resp);
     }
 }
