@@ -1,4 +1,4 @@
-package com.myccnice.dubbo.provider.service;
+package com.myccnice.dubbo.facade;
 
 public interface HelloService {
 

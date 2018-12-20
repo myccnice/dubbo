@@ -1,7 +1,7 @@
 package com.myccnice.dubbo.consumer;
 
+import com.myccnice.dubbo.facade.HelloService;
 import com.myccnice.dubbo.framework.ProxyFactory;
-import com.myccnice.dubbo.provider.service.HelloService;
 
 public class Consumer {
 

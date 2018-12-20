@@ -36,7 +36,6 @@ public class HttpServer {
      */
     public void start(Url url) {
         Tomcat tomcat = new Tomcat();
-
         Server server = tomcat.getServer();
 
         Service service = server.findService("Tomcat");
@@ -53,17 +52,16 @@ public class HttpServer {
         String path = "";
         Context context = new StandardContext();
         context.setPath(path);
-        context.addLifecycleListener(new Tomcat.FixContextListener());
 
         host.addChild(context);
         engine.addChild(host);
         service.addConnector(connector);
         service.setContainer(engine);
-        // 上面是定义一个tomcat
-        // tomcat是一个servlet容器，所以tomcat需要一个servlet来处理请求。
-        // 我们开发web项目时，web.xml里也是需要这servlet的
+
         tomcat.addServlet(path, "dispatcher", new DispatcherServlet());
         context.addServletMappingDecoded("/*", "dispatcher");
+        context.addLifecycleListener(new Tomcat.FixContextListener());
+
         try {
             tomcat.start();
             tomcat.getServer().await();

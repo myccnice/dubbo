@@ -1,9 +1,9 @@
 package com.myccnice.dubbo.provider;
 
+import com.myccnice.dubbo.facade.HelloService;
 import com.myccnice.dubbo.framework.Url;
 import com.myccnice.dubbo.protocol.Protocol;
 import com.myccnice.dubbo.protocol.ProtocolFactory;
-import com.myccnice.dubbo.provider.service.HelloService;
 import com.myccnice.dubbo.provider.service.impl.HelloServiceImpl;
 import com.myccnice.dubbo.register.RegisterCenter;
 

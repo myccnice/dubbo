@@ -1,6 +1,10 @@
 package com.myccnice.dubbo.framework;
 
-public class Url {
+import java.io.Serializable;
+
+public class Url implements Serializable {
+
+    private static final long serialVersionUID = -3750736618144548411L;
 
     private String host;
 
