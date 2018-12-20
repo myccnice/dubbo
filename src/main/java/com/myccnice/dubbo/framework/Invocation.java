@@ -1,12 +1,16 @@
 package com.myccnice.dubbo.framework;
 
+import java.io.Serializable;
+
 /**
  * 用于传递请求参数
  *
  * @author 王鹏
  * @date 2018年12月17日
  */
-public class Invocation {
+public class Invocation implements Serializable {
+
+    private static final long serialVersionUID = -2603557376617885788L;
 
     /**
      * 服务名
